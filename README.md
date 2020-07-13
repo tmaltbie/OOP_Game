@@ -1,2 +1,2 @@
 # oop_game
- phrase guessin game using OOJS
+ phrase guessing game using OOJS

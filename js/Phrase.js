@@ -21,8 +21,8 @@ class Phrase{
        for (let i = 0; i < randomPhrase; i++) {
            const li = document.createElement('li')
            if (randomPhrase[i] !== ' ') {
-               li.className = `hide letter ${i}`
-               li.textContent = i
+               li.className = `hide letter ${randomPhrase[i]}`
+               li.textContent = randomPhrase[i]
            }
            if (randomPhrase[i] === ' ') {
                li.className = `space`
