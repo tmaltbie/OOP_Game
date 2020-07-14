@@ -16,20 +16,20 @@ class Phrase{
    */
     addPhraseToDisplay() {
        const phraseSection = document.querySelector('#phrase ul');
-       const game = new Game
        const randomPhrase = game.getRandomPhrase().phrase
-       for (let i = 0; i < randomPhrase; i++) {
-           const li = document.createElement('li')
-           if (randomPhrase[i] !== ' ') {
-               li.className = `hide letter ${randomPhrase[i]}`
-               li.textContent = randomPhrase[i]
-           }
-           if (randomPhrase[i] === ' ') {
-               li.className = `space`
-               li.textContent = ' '
-           }
-           phraseSection.appendChild(li) 
-       }
+       console.log(randomPhrase)
+    //    for (let i = 0; i < randomPhrase; i++) {
+    //        const li = document.createElement('li')
+    //        if (randomPhrase[i] !== ' ') {
+    //            li.className = `hide letter ${randomPhrase[i]}`
+    //            li.textContent = randomPhrase[i]
+    //        }
+    //        if (randomPhrase[i] === ' ') {
+    //            li.className = `space`
+    //            li.textContent = ' '
+    //        }
+    //        phraseSection.appendChild(li) 
+    //    }
     }
 
     checkLetter() {}

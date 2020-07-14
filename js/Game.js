@@ -8,7 +8,7 @@
 
 class Game {
     constructor () {
-        this.missed = 0
+        this.missed = 0;
         this.phrases = [
             {'phrase': 'long time no see'},
             {'phrase': 'fall seven times, stand up eight'},
@@ -17,12 +17,17 @@ class Game {
             {'phrase': 'practice makes progress'},
             {'phrase': 'teamwork makes the dream work'},
             {'phrase': 'common sense is not so common'},
-
-        ]
+        ];
         this.activePhrase = null;
     }
 
-    startGame() {}
+    startGame() {
+        const overlay = document.getElementById('overlay');
+        overlay.hidden = true
+
+        this.activePhrase = new Phrase
+        activePhrase().addPhraseToDisplay()
+    }
 
    /**
    * Selects random phrase from phrases property
