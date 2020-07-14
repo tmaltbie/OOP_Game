@@ -8,16 +8,15 @@
 
 class Phrase{
     constructor(phrase) {
-        this.phrase = phrase.toLowerCase()
+        this.phrase = phrase
     }
-
    /**
    * Display phrase on game board
    */
     addPhraseToDisplay() {
        const phraseSection = document.querySelector('#phrase ul');
        const randomPhrase = game.getRandomPhrase().phrase
-       console.log(randomPhrase)
+       console.log(this.phrase)
     //    for (let i = 0; i < randomPhrase; i++) {
     //        const li = document.createElement('li')
     //        if (randomPhrase[i] !== ' ') {
