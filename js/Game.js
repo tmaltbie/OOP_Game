@@ -49,7 +49,9 @@ class Game {
        return this.phrases[random]
     }
 
+
     handleInteraction() {}
+
 
     removeLife() {}
 
@@ -59,8 +61,17 @@ class Game {
     won
     */
     checkForWin() {
-        
+        const hidden = document.getElementsByClassName('hide')
+        console.log(hidden)
+        if (hidden.length === 0) {
+            return true
+        } else {
+            return false
+        }
+       
+        // return [...document.querySelectorAll('#phrase ul li')]
     }
+
 
     gameOver() {}
 }
