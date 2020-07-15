@@ -9,24 +9,35 @@
 class Game {
     constructor () {
         this.missed = 0;
-        this.phrases = [
-            {'phrase': 'long time no see'},
-            {'phrase': 'fall seven times, stand up eight'},
-            {'phrase': 'i think therefore i am'},
-            {'phrase': 'to infinity and beyond'},
-            {'phrase': 'practice makes progress'},
-            {'phrase': 'teamwork makes the dream work'},
-            {'phrase': 'common sense is not so common'},
-        ];
+        this.phrases = this.createPhrases()
         this.activePhrase = null;
     }
 
+    /**
+    * Creates phrases for use in game
+    * @return {array} An array of phrases that could be used in the game
+    */  
+    createPhrases() {
+        const phrases = [
+            new Phrase('Long time no see'),
+            new Phrase('Fall seven times stand up eight'),
+            new Phrase('I think therefore I am'),
+            new Phrase('To infinity and beyond'),
+            new Phrase('Practice makes progress'),
+            new Phrase('Teamwork makes the dream work'),
+            new Phrase('Common sense is not so common')
+        ]
+        return phrases
+    }
+
+    /**
+    * Begins game by selecting a random phrase and displaying it to user
+    */
     startGame() {
         const overlay = document.getElementById('overlay');
-        overlay.hidden = true
-
-        this.activePhrase = new Phrase
-        activePhrase().addPhraseToDisplay()
+        overlay.style.display = 'none'
+        this.activePhrase = this.getRandomPhrase()
+        this.activePhrase.addPhraseToDisplay()
     }
 
    /**
