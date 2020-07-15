@@ -53,7 +53,14 @@ class Game {
 
     removeLife() {}
 
-    checkForWin() {}
+    /**
+    * Checks for winning move
+    * @return {boolean} True if game has been won, false if game wasn't
+    won
+    */
+    checkForWin() {
+        
+    }
 
     gameOver() {}
 }

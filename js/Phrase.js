@@ -46,5 +46,16 @@ class Phrase{
         return this.phrase.includes(letter)
     }
 
-    showMatchedLetter() {}
+    /**
+    * Displays passed letter on screen after a match is found
+    * @param (string) letter - Letter to display
+    */
+    showMatchedLetter(letter) {
+        const phraseLetters = [...document.querySelectorAll('#phrase ul li')]
+        for (let i = 0; i < phraseLetters.length; i++) {
+            if (phraseLetters[i].textContent === letter) {
+                phraseLetters[i].className = `show letter ${letter}`
+            }
+        }
+    }
 }
