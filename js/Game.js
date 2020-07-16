@@ -54,7 +54,19 @@ class Game {
     * @param (HTMLButtonElement) button - The clicked button element
     */
     handleInteraction(button) {
-        console.log(button)
+        const currentPhrase = this.activePhrase.phrase
+        const letter = button.textContent
+        button.disabled = true;
+        if(!currentPhrase.split('').includes(letter)) {
+            button.className = 'wrong'
+            this.removeLife()
+        } else {
+            button.className = 'chosen'
+            this.activePhrase.showMatchedLetter(letter)
+            if (this.checkForWin()) {
+                this.gameOver(true)
+            }
+        }
     }
 
     /**
@@ -76,6 +88,9 @@ class Game {
             } else if (this.missed === 5) {
                 tries[4].src = 'images/lostHeart.png'
                 this.gameOver()
+                for (let i = 0; i < tries.length; i++) {
+                    tries[i].src = 'images/liveHeart.png'
+                }
             }
     }
 
@@ -86,7 +101,6 @@ class Game {
     */
     checkForWin() {
         const hidden = document.getElementsByClassName('hide')
-        console.log(hidden)
         if (hidden.length === 0) {
             return true
         } else {
@@ -106,9 +120,20 @@ class Game {
         if (!gameWon) {
             overlay.style.backgroundColor = '#cb561b'
             gameOverMsg.textContent = 'You have perished. Try Again?'
-        } else {
+        } else if (gameWon) {
             overlay.style.backgroundColor = '#2d930f'
             gameOverMsg.textContent = 'YOU WIN! YOU GLOAT OVER THE CARCASS OF THE PHRASE HUNTER GAME'
         }
+        const childNodes = document.querySelector('#phrase ul').childNodes
+        for (let i=childNodes.length-1; i >= 0; i--) {
+            const childNode = childNodes[i]
+            childNode.parentNode.removeChild(childNode)
+        }
+        const keys = document.querySelectorAll('.keyrow button')
+        keys.forEach((key) => {
+            key.disabled = false;
+            key.className =  'key'
+        })
+
     }
 }
