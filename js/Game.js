@@ -49,11 +49,35 @@ class Game {
        return this.phrases[random]
     }
 
+    /**
+    * Handles onscreen keyboard button clicks
+    * @param (HTMLButtonElement) button - The clicked button element
+    */
+    handleInteraction(button) {
+        console.log(button)
+    }
 
-    handleInteraction() {}
-
-
-    removeLife() {}
+    /**
+    * Increases the value of the missed property
+    * Removes a life from the scoreboard
+    * Checks if player has remaining lives and ends game if player is out
+    */
+    removeLife() {
+        this.missed++
+        const tries = document.querySelectorAll('.tries img')
+            if (this.missed === 1) {
+                tries[0].src = 'images/lostHeart.png'
+            } else if (this.missed === 2) {
+                tries[1].src = 'images/lostHeart.png'
+            } else if (this.missed === 3) {
+                tries[2].src = 'images/lostHeart.png'
+            } else if (this.missed === 4) {
+                tries[3].src = 'images/lostHeart.png'
+            } else if (this.missed === 5) {
+                tries[4].src = 'images/lostHeart.png'
+                this.gameOver()
+            }
+    }
 
     /**
     * Checks for winning move
@@ -68,10 +92,23 @@ class Game {
         } else {
             return false
         }
-       
-        // return [...document.querySelectorAll('#phrase ul li')]
+        // return [...document.querySelectorAll('#phrase ul li')].every( (val, i, arr) => val === arr[0].className.includes('show' || 'space') )
     }
 
-
-    gameOver() {}
+    /**
+    * Displays game over message
+    * @param {boolean} gameWon - Whether or not the user won the game
+    */
+    gameOver(gameWon) {
+        const overlay = document.getElementById('overlay');
+        const gameOverMsg = document.getElementById('game-over-message')
+        overlay.style.display = ''
+        if (!gameWon) {
+            overlay.style.backgroundColor = '#cb561b'
+            gameOverMsg.textContent = 'You have perished. Try Again?'
+        } else {
+            overlay.style.backgroundColor = '#2d930f'
+            gameOverMsg.textContent = 'YOU WIN! YOU GLOAT OVER THE CARCASS OF THE PHRASE HUNTER GAME'
+        }
+    }
 }
