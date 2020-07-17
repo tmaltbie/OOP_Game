@@ -35,7 +35,8 @@ class Game {
     */
     startGame() {
         const overlay = document.getElementById('overlay');
-        overlay.style.display = 'none'
+        overlay.style.opacity = '0'
+        overlay.style.zIndex = '-1'
         this.activePhrase = this.getRandomPhrase()
         this.activePhrase.addPhraseToDisplay()
     }
@@ -77,21 +78,18 @@ class Game {
     removeLife() {
         this.missed++
         const tries = document.querySelectorAll('.tries img')
-            if (this.missed === 1) {
-                tries[0].src = 'images/lostHeart.png'
-            } else if (this.missed === 2) {
-                tries[1].src = 'images/lostHeart.png'
-            } else if (this.missed === 3) {
-                tries[2].src = 'images/lostHeart.png'
-            } else if (this.missed === 4) {
-                tries[3].src = 'images/lostHeart.png'
-            } else if (this.missed === 5) {
-                tries[4].src = 'images/lostHeart.png'
-                this.gameOver()
-                for (let i = 0; i < tries.length; i++) {
-                    tries[i].src = 'images/liveHeart.png'
-                }
-            }
+        if (this.missed === 1) {
+            tries[0].src = 'images/emptyHeart.png'
+        } else if (this.missed === 2) {
+            tries[1].src = 'images/emptyHeart.png'
+        } else if (this.missed === 3) {
+            tries[2].src = 'images/emptyHeart.png'
+        } else if (this.missed === 4) {
+            tries[3].src = 'images/emptyHeart.png'
+        } else if (this.missed === 5) {
+            tries[4].src = 'images/emptyHeart.png'
+            this.gameOver()
+        }
     }
 
     /**
@@ -116,24 +114,38 @@ class Game {
     gameOver(gameWon) {
         const overlay = document.getElementById('overlay');
         const gameOverMsg = document.getElementById('game-over-message')
-        overlay.style.display = ''
+        overlay.style.opacity = '1'
+        overlay.style.zIndex = '1'
+
         if (!gameWon) {
             overlay.style.backgroundColor = '#cb561b'
             gameOverMsg.textContent = 'You have perished. Try Again?'
         } else if (gameWon) {
             overlay.style.backgroundColor = '#2d930f'
-            gameOverMsg.textContent = 'YOU WIN! YOU GLOAT OVER THE CARCASS OF THE PHRASE HUNTER GAME'
+            gameOverMsg.textContent = 'Awesome. Wow. You Won!'
         }
-        const childNodes = document.querySelector('#phrase ul').childNodes
-        for (let i=childNodes.length-1; i >= 0; i--) {
-            const childNode = childNodes[i]
-            childNode.parentNode.removeChild(childNode)
-        }
+
+        this.resetGame()
+    }
+
+    /**
+    * Resets game after game ends:
+    * Clears phrase by removing li elements
+    * Enables and resets all onscreen keys
+    * Resets all hearts to full
+    */
+    resetGame() {
+        document.querySelector('#phrase ul').innerHTML = ''
+
         const keys = document.querySelectorAll('.keyrow button')
         keys.forEach((key) => {
             key.disabled = false;
             key.className =  'key'
         })
 
+        const tries = document.querySelectorAll('.tries img')
+        for (let i = 0; i < tries.length; i++) {
+            tries[i].src = 'images/fullHeart.png'
+        }
     }
 }

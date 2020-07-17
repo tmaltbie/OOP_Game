@@ -6,7 +6,7 @@
 :root {
   --color-win: #78CF82;
   --color-lose: #D94545;
-  --color-start: #5b85b7;
+  --color-start: #0d1d30;
   --color-neutral: #445069;
   --color-neutral-light: #D2D2D2;
   --color-keys: #37474F;
@@ -83,6 +83,53 @@ button {
   margin-top: 15px;
 }
 
+/* Ripple Out */
+/* Ripple Out effect c/o Ian Lunn */
+/* Original hover effect has been adjusted */
+/* https://github.com/IanLunn/Hover/blob/master/css/hover.css */
+@-webkit-keyframes hvr-ripple-out {
+    100% {
+      top: -12px;
+      right: -12px;
+      bottom: -12px;
+      left: -12px;
+      opacity: 0;
+    }
+  }
+  @keyframes hvr-ripple-out {
+    100% {
+      top: -12px;
+      right: -12px;
+      bottom: -12px;
+      left: -12px;
+      opacity: 0;
+    }
+  }
+  .hvr-ripple-out {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+  }
+  .hvr-ripple-out:before {
+    content: '';
+    position: absolute;
+    border: #e1e1e1 solid 2px;
+    border-radius: 5px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+  }
+  .hvr-ripple-out:hover:before, .hvr-ripple-out:focus:before, .hvr-ripple-out:active:before {
+    -webkit-animation-name: hvr-ripple-out;
+    animation-name: hvr-ripple-out;
+  }
+
 /* Title */
 
 .header {
@@ -106,7 +153,6 @@ button {
 .space {
   width: 15px;
 }
-
 
 
 .show {
@@ -159,7 +205,6 @@ button {
   border-right: solid 3px rgba(0, 0, 0, 0);
 }
 
-
 /* Overlay */
 
 #overlay {
@@ -173,6 +218,8 @@ button {
   left: 0;
   right: 0;
   border-radius: 5px;
+  transition: opacity 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
 }
 
 .title {
