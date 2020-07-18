@@ -35,8 +35,8 @@ class Game {
     */
     startGame() {
         const overlay = document.getElementById('overlay');
+
         overlay.style.display = 'none'
-        
         this.activePhrase = this.getRandomPhrase()
         this.activePhrase.addPhraseToDisplay()
     }
@@ -46,8 +46,9 @@ class Game {
    * @return {Object} Phrase object chosen to be used
    */
     getRandomPhrase() {
-       const random = Math.floor(Math.random() * this.phrases.length)
-       return this.phrases[random]
+        // generate random number
+        const random = Math.floor(Math.random() * this.phrases.length)
+        return this.phrases[random]
     }
 
     /**
@@ -58,7 +59,9 @@ class Game {
         const currentPhrase = this.activePhrase.phrase
         const letter = button.textContent
         button.disabled = true;
+
         if(!currentPhrase.split('').includes(letter)) {
+            // if the selected letter is NOT in the phrase, do this
             button.className = 'wrong'
             this.removeLife()
         } else {
@@ -94,19 +97,10 @@ class Game {
 
     /**
     * Checks for winning move
-    * @return {boolean} True if game has been won, false if game wasn't
-    won
+    * @return {boolean} True if game has been won, false if game wasn't won
     */
     checkForWin() {
-        const hidden = document.getElementsByClassName('hide')
-        // if there are no elements with class of hide, check for win
-        if (hidden.length === 0) {
-            return true
-        } else {
-            return false
-        }
-        // could possibly turn this function into a one-liner with refactor uisng following code (with edits):
-        // return [...document.querySelectorAll('#phrase ul li')].every( (val, i, arr) => val === arr[0].className.includes('show' || 'space') )
+        return document.getElementsByClassName('hide').length === 0
     }
 
     /**
@@ -131,11 +125,12 @@ class Game {
 
     /**
     * Resets game after game ends:
-    * Clears phrase by removing li elements
+    * Empties phrase ul
     * Enables and resets all onscreen keys
-    * Resets all hearts to full
+    * Resets all hearts to "full"
     */
     resetGame() {
+        // empty the phrase UL
         document.querySelector('#phrase ul').innerHTML = ''
 
         const keys = document.querySelectorAll('.keyrow button')
