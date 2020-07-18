@@ -116,8 +116,12 @@ class Game {
             overlay.style.backgroundColor = '#cb561b'
             gameOverMsg.textContent = 'You have perished. Try Again?'
         } else if (gameWon) {
+            const winningPhrase = document.createElement('h1')
+            winningPhrase.textContent = this.activePhrase.phrase
+            overlay.appendChild(winningPhrase)
             overlay.style.backgroundColor = '#2d930f'
             gameOverMsg.textContent = 'Awesome. Wow. You Won!'
+
         }
 
         this.resetGame()
