@@ -1,5 +1,5 @@
 # oop_game
- phrase guessing game using OOJS
+ Phrase guessing game using OOJS.
 
 
 Style Adjustments:

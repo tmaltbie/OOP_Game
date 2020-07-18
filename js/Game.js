@@ -35,8 +35,8 @@ class Game {
     */
     startGame() {
         const overlay = document.getElementById('overlay');
-        overlay.style.opacity = '0'
-        overlay.style.zIndex = '-1'
+        overlay.style.display = 'none'
+        
         this.activePhrase = this.getRandomPhrase()
         this.activePhrase.addPhraseToDisplay()
     }
@@ -99,11 +99,13 @@ class Game {
     */
     checkForWin() {
         const hidden = document.getElementsByClassName('hide')
+        // if there are no elements with class of hide, check for win
         if (hidden.length === 0) {
             return true
         } else {
             return false
         }
+        // could possibly turn this function into a one-liner with refactor uisng following code (with edits):
         // return [...document.querySelectorAll('#phrase ul li')].every( (val, i, arr) => val === arr[0].className.includes('show' || 'space') )
     }
 
@@ -114,8 +116,7 @@ class Game {
     gameOver(gameWon) {
         const overlay = document.getElementById('overlay');
         const gameOverMsg = document.getElementById('game-over-message')
-        overlay.style.opacity = '1'
-        overlay.style.zIndex = '1'
+        overlay.style.display = ''
 
         if (!gameWon) {
             overlay.style.backgroundColor = '#cb561b'

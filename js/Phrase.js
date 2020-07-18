@@ -18,12 +18,7 @@ class Phrase{
         const phraseSection = document.querySelector('#phrase ul');
         const currentPhrase = this.phrase
         const chars = currentPhrase.split('')
-        // const phraseChars = []
         const regex = /\S/
-        
-        // for (let i = 0; i < currentPhrase.length; i++) {
-        //     phraseChars.push(chars[i])
-        // }
 
         chars.forEach((letters) => {
             const li = document.createElement('li')

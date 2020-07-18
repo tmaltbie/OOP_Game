@@ -18,11 +18,12 @@ keyboard.addEventListener('click', e => {
 })
 
 document.addEventListener('keydown', e => {
-    for (let i = 0; i < keys.length; i++) {
-        if (e.key === keys[i].textContent) {
-            game.handleInteraction(keys[i])
+    const overlay = document.getElementById('overlay');
+    if (overlay.style.display === 'none') {
+        for (let i = 0; i < keys.length; i++) {
+            if (e.key === keys[i].textContent && keys[i].disabled != true) {
+                game.handleInteraction(keys[i])
+            }
         }
     }
 })
-
- 
